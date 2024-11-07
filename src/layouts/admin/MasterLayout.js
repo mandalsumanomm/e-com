@@ -10,6 +10,7 @@ import routes from '../../routes/routes';
 const MasterLayout = () => {
   return (
     <div className="sb-nav-fixed">
+    
       <Navbar />
       <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
