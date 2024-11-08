@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MasterLayout from './layouts/admin/MasterLayout';
+//import MasterLayout from './layouts/admin/MasterLayout';
 import Login from './components/frontend/Login';
 import Register from './components/frontend/auth/Register';
 import Signup from './components/frontend/Signup';
@@ -9,6 +9,8 @@ import Wishlist from './components/frontend/Wishlist';
 import axios from 'axios';
 import Cart from './components/frontend/Cart';
 import About from './components/frontend/About';
+import AdminPrivateRoute from './AdminPrivateRoute';
+
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -30,7 +32,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/admin/*" element={<MasterLayout />} />
+        {/* <Route path="/admin/*" element={<MasterLayout />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} /> 
@@ -38,6 +40,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} /> 
         <Route path="/cart" element={<Cart />} /> 
         <Route path="/about" element={<About />} /> 
+        <AdminPrivateRoute path='/admin' name= "Admin" />
       </Routes>
     </Router>
   );
