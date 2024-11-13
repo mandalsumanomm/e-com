@@ -48,7 +48,7 @@ const SignupForm = () => {
         localStorage.setItem('auth_token', res.data.token);
         localStorage.setItem('auth_name', res.data.username);
         swal("Success", res.data.message, "success");
-        navigate('/');
+        navigate('/login');
       } else {
         setRegisterInput({ ...registerInput, error_list: res.data.errors });
       }

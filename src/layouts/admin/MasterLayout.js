@@ -3,37 +3,35 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import '../../assets/admin/css/styles.css';
-import '../../assets/admin/js/scripts';
-import routes from '../../routes/routes'; 
+import routes from '../../routes/routes';
 
 const MasterLayout = () => {
   return (
-    <div className="sb-nav-fixed">
-    
+    <div className="flex flex-col h-screen">
       <Navbar />
-      <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-          <Sidebar />
-        </div>
-        <div id="layoutSidenav_content">
-          <main>
-            <Routes>
-              {routes.map((route, idx) => {
-                return (
-                  <Route
-                    key={idx}
-                    path={route.path}
-                    element={<route.component />}
-                  />
-                );
-              })}
-              <Route path="/admin" element={<Navigate to="/admin/dashboard" />} />
-            </Routes>
-          </main>
-          <Footer />
+
+      <div className="flex flex-1 overflow-hidden">
+        <Sidebar />
+
+        <div className="flex-1 overflow-auto p-4">
+          <Routes>
+            {routes.map((route, idx) => {
+              const Component = route.component;
+              return (
+                <Route
+                  key={idx}
+                  path={route.path}
+                  element={<Component />}
+                />
+              );
+            })}
+            <Route path="/admin" element={<Navigate to="/admin/dashboard" />} />
+          </Routes>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
